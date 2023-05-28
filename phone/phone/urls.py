@@ -21,5 +21,6 @@ from app.views import index, phones_catalog
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', index, name='index'),
-    path('catalog/<phone>/', phones_catalog),
+    path('catalog/<slug:phone>/', phones_catalog, name='catalog'),
+    path('catalog/', phones_catalog, name='catalog'),
 ]
