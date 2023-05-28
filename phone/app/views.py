@@ -11,7 +11,7 @@ def index(request):
     return render(request, 'base.html', context)
 
 def phones_catalog(request, phone='None'):
-    orderby = request.GET.get('sort')
+    orderby = request.GET.get('sort', 'name')
 
     if orderby == 'min_price':
         sort = 'price'
@@ -19,6 +19,7 @@ def phones_catalog(request, phone='None'):
         sort = '-price'
     elif orderby == 'name':
         sort = 'name'
+
 
     if phone == 'None':
         template = 'catalog.html'

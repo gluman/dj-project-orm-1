@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}Каталог{% endblock %}
-{% block content %}
+{% block content %}d
     <div class="container">
         <div class="header">
             <h1><a href="/catalog">Каталог</a></h1>
@@ -10,17 +10,19 @@
 
         <div class="sort-block">
             Сортировать по <a href="http://127.0.0.1:8000/catalog/?sort=name">по названию<a>
-            <a href="http://127.0.0.1:8000/catalog/?sort=min_price">начиная с дешевых</a>
-            <a href="http://127.0.0.1:8000/catalog/?sort=max_price">начиная с дорогих</a>
+            <a href="/catalog/?sort=min_price">начиная с дешевых</a>
+            <a href="/catalog/?sort=max_price">начиная с дорогих</a>
         </div>
 
         <div class="content">
-            {% for phone in phones%}
-            {{phone.name}}
-            Стоимость, руб: {{phone.price}}
-            <img src={{phone.image}}>
+            {% for phone in phones %}
+                <div class="phone">
+                    <a href="{% url 'phone' phone.slug %}">
+                        <h3>{{ phone.name }}</h3>
+                     </a>
+                <p>Стоимость, руб: {{phone.price}}</p>
+                <img height="400" src="{{ phone.image }}" alt="{{ phone.name }}"/>
             {% endfor %}
-
         </div>
     </div>
 {% endblock %}
